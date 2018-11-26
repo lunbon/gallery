@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>gallery</title>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+	#app{
+		width: 100%;
+		height:300px;
+		overflow-y: hidden;
+
+	}
+	#app p{
+		display: inline;
+	}
+</style>
+</head>
+<body>
+<div id="app"> 
+		<input v-on:click='back' type="button" value="back">
+		<p v-for="img in images"><img v-bind:src="img" width='300' height="200"></p>
+		<input v-on:click='next' type="button" value="next">
+</div>
+
+<script>
+imgs=['img1.jpg','img2.jpg','img3.jpg','img4.jpg']
+new Vue({
+	el:"#app",
+	data:{
+		images:imgs
+	},
+	methods:{
+		next(e){
+			deleted=this.images.splice(0,1);
+			this.images.push(deleted);
+		},
+		back(e){
+			deleted=this.images.pop();
+			this.images.splice(0,0,deleted);
+		}
+	}
+})
+</script>
+</body>
+</html>
